@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default function PostComment() {
   const [text, setText] = useState('');
@@ -9,7 +9,7 @@ export default function PostComment() {
     e.preventDefault();
     setLoading(true);
     setSuccess(false);
-    await fetch('http://localhost:4000/api/comments', {
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/3/comments`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ text }),

@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:4000');
+const socket = io(process.env.NEXT_PUBLIC_API_URL);
 
 function getRandomY() {
   // 画面の高さに合わせてランダムY座標を決定
@@ -29,14 +29,14 @@ export default function Player() {
       console.log('socket.io disconnected!');
     });
     // 新着コメントだけ受信して流す
-    socket.on('new-comment', (comment) => {
+    socket.on('new-comment7', (comment) => {
       console.log('new-comment受信:', comment);
       setComments((prev) => [...prev, comment]);
     });
     return () => {
       socket.off('connect');
       socket.off('disconnect');
-      socket.off('new-comment');
+      socket.off('new-comment7');
     };
   }, []);
 
