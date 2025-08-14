@@ -3,6 +3,7 @@ on:
   push:
     tags:
       - "v*"
+  workflow_dispatch:
 
 jobs:
   NextBuildCheck:
@@ -39,7 +40,7 @@ jobs:
           password: ${{ secrets.HARBOR_TOKEN }}
 
       - name: Build Docker image
-        run: docker build -t registry.uniproject.jp/yuito-it/comment:${{ env.TAG_NAME }} .
+        run: docker build -t registry.uniproject.jp/yuito-it/comment:2.0.0 .
 
       - name: Push Docker image
-        run: docker push registry.uniproject.jp/yuito-it/comment:${{ env.TAG_NAME }}
+        run: docker push registry.uniproject.jp/yuito-it/comment:2.0.0
