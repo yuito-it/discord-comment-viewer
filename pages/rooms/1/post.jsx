@@ -9,7 +9,7 @@ export default function PostComment() {
     e.preventDefault();
     setLoading(true);
     setSuccess(false);
-    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/1/comments`, {
+    await fetch(`${process.env.https://comment-api.uniproject.jp/}/api/1/comments`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ text }),

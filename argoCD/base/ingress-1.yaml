@@ -1,0 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: comment-api
+  labels:
+    name: comment-api
+  annotations:
+    cert-manager.io/cluster-issuer: le-cf-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: comment.uniproject.jp
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: comment
+                port:
+                  number: 80
+    - host: comment-api.uniproject.jp
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: comment
+                port:
+                  number: 81
+  tls:
+    - hosts:
+        - comment.uniproject.jp
+        - comment-api.uniproject.jp
+      secretName: comment-tls
