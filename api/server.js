@@ -24,6 +24,7 @@ app.post("/api/1/comments", (req, res) => {
     createdAt: new Date().toISOString(),
   };
   comments1.push(comment);
+  console.log("Posting comment:", comment);
   io.emit("new-comment1", comment);
   res.status(201).json(comment);
 });
@@ -31,7 +32,7 @@ app.post("/api/1/comments", (req, res) => {
 app.get("/api/1/comments", (req, res) => {
   res.json(comments1);
 });
-
+/*
 let comments2 = [];
 
 app.post("/api/2/comments", (req, res) => {
@@ -146,7 +147,7 @@ io.on("connection", (socket) => {
     console.log("user disconnected");
   });
 });
-
+*/
 const PORT = 4000;
 server.listen(PORT, () => {
   console.log(`API server listening on http://localhost:${PORT}`);

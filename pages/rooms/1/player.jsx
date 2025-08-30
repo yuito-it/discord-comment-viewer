@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
 import DanmakuComment from "../../../components/DanmakuComments";
 
-const socket = io("https://comment-api.uniproject.jp/");
+const socket = io("http://comment-api.uniproject.jp/");
 
 export default function Player() {
   const [comments, setComments] = useState([]); // 新着だけ
